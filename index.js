@@ -1,4 +1,5 @@
 require('dotenv').config()
+import mongoose from 'mongoose'
 const express = require('express')
 const app = express()
 const port=process.env.port
@@ -6,6 +7,29 @@ const port=process.env.port
 app.get('/', (req, res) =>{
   res.send('Hello World')
 })
+
+
+(async ()=>{
+ try{
+    await mongoose.connect(`${process.env.MONGO_URI}`)
+
+ }
+ 
+ catch(error){
+    console.error("ERROR",error)
+    throw err
+ }
+})()
+
+
+
+
+
+
+
+
+
+
 
 app.get('/twitter',(req,res)=>{
     res.send("<h1>Twitter</hnpm i dotenv1>")
